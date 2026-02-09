@@ -265,11 +265,14 @@
             if (res.ok) {
                 showBanner("ok", msg || "OK", name);
                 feedback("ok");
+            } else if (res.status === 404) {
+                showBanner("error", msg || "Invalid tiket, not Found", name);
+                feedback("error");
             } else if (res.status === 409) {
                 showBanner("error", msg || "Already used", name);
-                feedback("error");
-            } else if (res.status === 400) {
-                showBanner("error", msg || "Invalid ticket");
+                feedback("error");    
+            } else if (res.status === 408) {
+                showBanner("error", msg || "Invalid Date, this ticket is not for today");
                 feedback("error");
             } else if (res.status === 403) {
                 showBanner("error", msg || "Forbidden — check scanner key");
