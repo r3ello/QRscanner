@@ -1,0 +1,36 @@
+server {
+    listen       80;
+    server_name  _;
+
+    root   /usr/share/nginx/html;
+    index  index.html;
+
+    # ── PWA static files ─────────────────────────
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # ── Proxy check-in API → n8n webhook ─────────
+    location /api/checkin {
+        proxy_pass             ${N8N_WEBHOOK_URL}/webhook/checkin;
+        proxy_http_version     1.1;
+        proxy_set_header       Host $host;
+        proxy_set_header       X-Real-IP $remote_addr;
+        proxy_set_header       X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header       X-Forwarded-Proto $scheme;
+        proxy_set_header       Content-Type $http_content_type;
+        proxy_set_header       X-Scanner-Key $http_x_scanner_key;
+        proxy_read_timeout     10s;
+        proxy_connect_timeout  5s;
+    }
+
+    # ── Cache static assets ──────────────────────
+    location ~* \.(js|css|png|svg|ico|webmanifest)$ {
+        expires    1h;
+        add_header Cache-Control "public";
+    }
+
+    # ── Security headers ─────────────────────────
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options        "DENY"    always;
+}

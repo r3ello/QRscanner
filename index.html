@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0f0f1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Door Scanner</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a1a2e'/><text x='50' y='58' text-anchor='middle' font-family='system-ui' font-size='36' font-weight='bold' fill='white'>QR</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Top status bar -->
+    <header id="status-bar">
+        <div id="online-indicator" class="indicator online">Online</div>
+        <div id="camera-indicator" class="indicator off">Camera Off</div>
+    </header>
+
+    <!-- Camera viewport -->
+    <main id="viewport">
+        <div id="reader"></div>
+        <div id="placeholder">
+            <div class="placeholder-icon">&#128247;</div>
+            <p>Tap <strong>Start Camera</strong> to begin scanning</p>
+        </div>
+    </main>
+
+    <!-- Feedback overlay -->
+    <div id="feedback" class="hidden" aria-live="assertive" role="alert">
+        <div id="feedback-status"></div>
+        <div id="feedback-message"></div>
+        <div id="feedback-name"></div>
+    </div>
+
+    <!-- Bottom controls -->
+    <footer id="controls">
+        <button id="btn-start" class="btn btn-primary">Start Camera</button>
+        <button id="btn-stop" class="btn btn-danger" disabled>Stop</button>
+        <button id="btn-switch" class="btn btn-secondary" disabled>Switch Cam</button>
+        <button id="btn-settings" class="btn btn-secondary">Settings</button>
+    </footer>
+
+    <!-- Settings modal -->
+    <div id="settings-overlay" class="hidden">
+        <div id="settings-panel">
+            <h2>Scanner Settings</h2>
+            <label for="input-key">Scanner Key <span class="required">*</span></label>
+            <input type="password" id="input-key" placeholder="Enter X-Scanner-Key" autocomplete="off">
+            <div id="key-warning" class="hidden">Scanner key is required for check-in.</div>
+            <div class="settings-actions">
+                <button id="btn-save" class="btn btn-primary">Save &amp; Close</button>
+                <button id="btn-cancel" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
