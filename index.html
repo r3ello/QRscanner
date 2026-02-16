@@ -16,8 +16,13 @@
 
     <!-- Top status bar -->
     <header id="status-bar">
-        <div id="online-indicator" class="indicator online">Online</div>
-        <div id="camera-indicator" class="indicator off">Camera Off</div>
+        <div id="online-indicator" class="indicator online" data-i18n="status.online">Online</div>
+        <div id="lang-switcher">
+            <button class="lang-flag active" data-lang="en" title="English">&#127468;&#127463;</button>
+            <button class="lang-flag" data-lang="es" title="Espa&#241;ol">&#127466;&#127480;</button>
+            <button class="lang-flag" data-lang="de" title="Deutsch">&#127465;&#127466;</button>
+        </div>
+        <div id="camera-indicator" class="indicator off" data-i18n="status.cameraOff">Camera Off</div>
     </header>
 
     <!-- Camera viewport -->
@@ -25,7 +30,7 @@
         <div id="reader"></div>
         <div id="placeholder">
             <div class="placeholder-icon">&#128247;</div>
-            <p>Tap <strong>Start Camera</strong> to begin scanning</p>
+            <p data-i18n="placeholder.text" data-i18n-html>Tap <strong>Start Camera</strong> to begin scanning</p>
         </div>
     </main>
 
@@ -38,22 +43,22 @@
 
     <!-- Bottom controls -->
     <footer id="controls">
-        <button id="btn-start" class="btn btn-primary">Start Camera</button>
-        <button id="btn-stop" class="btn btn-danger" disabled>Stop</button>
-        <button id="btn-switch" class="btn btn-secondary" disabled>Switch Cam</button>
-        <button id="btn-settings" class="btn btn-secondary">Settings</button>
+        <button id="btn-start" class="btn btn-primary" data-i18n="btn.start">Start Camera</button>
+        <button id="btn-stop" class="btn btn-danger" disabled data-i18n="btn.stop">Stop</button>
+        <button id="btn-switch" class="btn btn-secondary" disabled data-i18n="btn.switch">Switch Cam</button>
+        <button id="btn-settings" class="btn btn-secondary" data-i18n="btn.settings">Settings</button>
     </footer>
 
     <!-- Settings modal -->
     <div id="settings-overlay" class="hidden">
         <div id="settings-panel">
-            <h2>Scanner Settings</h2>
-            <label for="input-key">Scanner Key <span class="required">*</span></label>
-            <input type="password" id="input-key" placeholder="Enter X-Scanner-Key" autocomplete="off">
-            <div id="key-warning" class="hidden">Scanner key is required for check-in.</div>
+            <h2 data-i18n="settings.title">Scanner Settings</h2>
+            <label for="input-key"><span data-i18n="settings.label">Scanner Key</span> <span class="required">*</span></label>
+            <input type="password" id="input-key" placeholder="Enter X-Scanner-Key" data-i18n-placeholder="settings.placeholder" autocomplete="off">
+            <div id="key-warning" class="hidden" data-i18n="settings.warning">Scanner key is required for check-in.</div>
             <div class="settings-actions">
-                <button id="btn-save" class="btn btn-primary">Save &amp; Close</button>
-                <button id="btn-cancel" class="btn btn-secondary">Cancel</button>
+                <button id="btn-save" class="btn btn-primary" data-i18n="settings.save">Save &amp; Close</button>
+                <button id="btn-cancel" class="btn btn-secondary" data-i18n="settings.cancel">Cancel</button>
             </div>
         </div>
     </div>

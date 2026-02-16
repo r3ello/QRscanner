@@ -8,7 +8,7 @@
  * Bump CACHE_VERSION when deploying updates so the old cache is purged.
  */
 
-const CACHE_VERSION = "door-scanner-v1";
+const CACHE_VERSION = "door-scanner-v2";
 
 const STATIC_ASSETS = [
     "./",
